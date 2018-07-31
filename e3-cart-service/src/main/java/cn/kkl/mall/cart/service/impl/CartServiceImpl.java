@@ -110,6 +110,15 @@ public class CartServiceImpl implements CartService {
 		jedisClient.hdel(reidsCartPre+":"+String.valueOf(userId), String.valueOf(itemId));
 		return E3Result.ok();
 	}
+
+	/* delete cart list data in redis dependent on userId logic:
+	 * delete hash key field and value dependent key directly. 
+	 */
+	@Override
+	public E3Result deleteCartItemAll(Long userId) {
+		jedisClient.del(reidsCartPre+":"+String.valueOf(userId));
+		return E3Result.ok();
+	}
 	
 	
 	
